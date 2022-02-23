@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Edit Order {% endblock%}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'pizza/edit_order.css'%}">
+{% endblock %}
+
+{% block content %}
+<h2>Edit your Order</h2>
+<h3>{{note}}</h3>
+<form action="{% url 'edit_order' pizza.id %}" method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Edit Order" class="btn btn-primary mt-2">
+</form>
+{% endblock %}

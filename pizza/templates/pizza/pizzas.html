@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Order Pizzas {% endblock%}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'pizza/pizzas.css'%}">
+{% endblock %}
+
+{% block content %}
+    <h1> Order Pizzas </h1>
+    <h2> {{ note }}</h2>
+    <form action="{% url 'pizzas' %}" method="POST">
+        {% csrf_token %}
+        {{ formSet.management_form }}
+        {% for form in formSet %}
+            {{form}}
+            <br><br>
+        {% endfor %}
+        <input type="submit" value="Get Pizza" class="btn btn-primary mt-2">
+    </form>
+{% endblock %}
